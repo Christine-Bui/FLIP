@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "895759443596",
+    "project_id": "flip-5dea4",
+    "storage_bucket": "flip-5dea4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895759443596:android:ae734d5f4ff29b02477da9",
+        "android_client_info": {
+          "package_name": "com.flip.flashcards"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "895759443596-k6aht0ndk9vnr9493sujs5dpbvhfk28h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB10zowsRLFc6HNjVVIIy88f0jCgLfip2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "895759443596-3tmi138s9gvuuivmfgrvsg6k7trnq6uq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
