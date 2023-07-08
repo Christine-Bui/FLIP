@@ -13,8 +13,6 @@
     <a href="https://github.com/Christine-Bui/Flip"><strong>Explore the docs »</strong></a>
     <br/>
     <br/>
-    <a href="https://github.com/Christine-Bui/Flip/issues">Report Bug</a>
-    .
   </p>
 </p>
 <div align="center">
@@ -33,7 +31,6 @@
 * [Contributing](#contributing)
 * [License](#license)
 * [Authors](#authors)
-* [Acknowledgements](#acknowledgements)
 
 ## About The Project
 
