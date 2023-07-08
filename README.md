@@ -17,7 +17,9 @@
 </p>
 <div align="center">
 
-![Downloads](https://img.shields.io/github/downloads/Christine-Bui/Flip/total) ![Contributors](https://img.shields.io/github/contributors/Christine-Bui/Flip?color=dark-green) ![Issues](https://img.shields.io/github/issues/Christine-Bui/Flip) ![License](https://img.shields.io/github/license/Christine-Bui/Flip) 
+![Contributors](https://img.shields.io/github/contributors/Christine-Bui/Flip?color=dark-green) 
+![Issues](https://img.shields.io/github/issues/Christine-Bui/Flip) 
+![License](https://img.shields.io/github/license/Christine-Bui/Flip) 
 
 </div>
 
