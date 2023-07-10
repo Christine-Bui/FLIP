@@ -14,4 +14,5 @@
     <string name="hello_home_fragment">hello home fragment</string>
     <string name="hello_fav_fragment">hello fav fragment</string>
     <string name="hello_search_fragment">hello search fragment</string>
+    <string name="home_title">My Flips</string>
 </resources>
