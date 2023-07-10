@@ -25,8 +25,8 @@
         />
 
     <item
-        android:id="@+id/share"
-        android:title="Shared"
-        android:icon="@drawable/ic_action_share"
+        android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_action_profile"
         />
 </menu>

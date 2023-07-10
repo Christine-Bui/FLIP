@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var searchFragment: SearchFragment
     lateinit var newFragment: NewFragment
     lateinit var favFragment: FavFragment
-    lateinit var shareFragment: SharingFragment
+    lateinit var profileFragment: ProfileFragment
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,27 +25,28 @@ class MainActivity : AppCompatActivity() {
         homeFragment = HomeFragment()
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.frameLayout,homeFragment)
+            .replace(R.id.frameLayout, homeFragment)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
         //now we will need to create our different fragemnts
         //Now let's add the menu evenet listener
         bottomnav.setOnNavigationItemSelectedListener { item ->
             //we will select each menu item and add an event when it's selected
-            when(item.itemId){
+            when (item.itemId) {
                 R.id.home -> {
                     homeFragment = HomeFragment()
                     supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.frameLayout,homeFragment)
+                        .replace(R.id.frameLayout, homeFragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
                 }
+
                 R.id.search -> {
                     searchFragment = SearchFragment()
                     supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.frameLayout,searchFragment)
+                        .replace(R.id.frameLayout, searchFragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
                 }
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                     newFragment = NewFragment()
                     supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.frameLayout,newFragment)
+                        .replace(R.id.frameLayout, newFragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
                 }
@@ -63,16 +64,16 @@ class MainActivity : AppCompatActivity() {
                     favFragment = FavFragment()
                     supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.frameLayout,favFragment)
+                        .replace(R.id.frameLayout, favFragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
                 }
 
-                R.id.share -> {
-                    shareFragment = SharingFragment()
+                R.id.profile -> {
+                    profileFragment = ProfileFragment()
                     supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.frameLayout,shareFragment)
+                        .replace(R.id.frameLayout, profileFragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
                 }
