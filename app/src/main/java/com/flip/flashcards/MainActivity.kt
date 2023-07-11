@@ -81,10 +81,14 @@ class MainActivity : AppCompatActivity() {
                                 val message = editText.text.toString()
                                 val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
                                 toast.show()
+
                             }
+                        //removes modal bottom sheet after user selects 'Create new folder' option.
+                            dialog.dismiss()
                             // create and show the alert dialog
                             val dialog = builder.create()
                             dialog.show()
+
                         }
 
                     dialogView.findViewById<View>(R.id.buttonSet).setOnClickListener {
@@ -94,9 +98,13 @@ class MainActivity : AppCompatActivity() {
                             .replace(R.id.frameLayout, newFragment)
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                             .commit()
+                        //removes modal bottom sheet after user selects a new card set
+                        dialog.dismiss()
+
                     }
                     dialog.setContentView(dialogView)
                     dialog.show()
+
                 }
 
                 R.id.favorite -> {
