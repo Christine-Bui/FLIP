@@ -23,6 +23,10 @@ class MainActivity : AppCompatActivity() {
     lateinit var profileFragment: ProfileFragment
     private lateinit var dialog: BottomSheetDialog
 
+    //Holds cards, but will be held into CardSetsModels later.
+    val cardModels = ArrayList<CardModel>()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
