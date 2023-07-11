@@ -2,9 +2,15 @@ package com.flip.flashcards
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.FrameLayout
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class MainActivity : AppCompatActivity() {
     //Create our four fragments object
@@ -13,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var newFragment: NewFragment
     lateinit var favFragment: FavFragment
     lateinit var profileFragment: ProfileFragment
-
+    private lateinit var dialog: BottomSheetDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,12 +58,22 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.new_set -> {
-                    newFragment = NewFragment()
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.frameLayout, newFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
+                    dialog = BottomSheetDialog(this, R.style.BottomSheetDialogTheme)
+                    val dialogView = layoutInflater.inflate(R.layout.bottom_dia, findViewById<LinearLayout>(R.id.create))
+                    dialogView.findViewById<View>(R.id.buttonFolder).setOnClickListener {
+                        Toast.makeText(this, "Folder", Toast.LENGTH_SHORT).show()
+                    }
+
+                    dialogView.findViewById<View>(R.id.buttonSet).setOnClickListener {
+                        newFragment = NewFragment()
+                        supportFragmentManager
+                            .beginTransaction()
+                            .replace(R.id.frameLayout, newFragment)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .commit()
+                    }
+                    dialog.setContentView(dialogView)
+                    dialog.show()
                 }
 
                 R.id.favorite -> {

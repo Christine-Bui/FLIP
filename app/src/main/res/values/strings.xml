@@ -15,4 +15,7 @@
     <string name="hello_fav_fragment">hello fav fragment</string>
     <string name="hello_search_fragment">hello search fragment</string>
     <string name="home_title">My Flips</string>
+    <string name="create">Create</string>
+    <string name="create_a_folder">Create a Folder</string>
+    <string name="create_a_new_set">Create a New Set</string>
 </resources>
