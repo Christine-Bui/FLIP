@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
                                 // send data from the AlertDialog to the Activity
                                 val editText = customLayout.findViewById<EditText>(R.id.editText)
                                 val message = editText.text.toString()
-                                val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+                                val toast = Toast.makeText(this, "Folder Made: $message", Toast.LENGTH_SHORT)
                                 toast.show()
 
                             }
