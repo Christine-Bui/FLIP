@@ -20,4 +20,6 @@
     <string name="create_a_new_set">Create a New Set</string>
 
     <string name="new_set">New Set</string>
+    <string name="front_card_text">Front Card Text</string>
+    <string name="back_card_text">Back Card Text</string>
 </resources>
