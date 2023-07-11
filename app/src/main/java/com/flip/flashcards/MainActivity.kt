@@ -33,15 +33,15 @@ class MainActivity : AppCompatActivity() {
         //now let's create our framelayout and bottomnav variables
         var bottomnav = findViewById<BottomNavigationView>(R.id.BottomNavMenu)
         var frame = findViewById<FrameLayout>(R.id.frameLayout)
-        //Now let's the deffault Fragment
+        //Now let's the default Fragment
         homeFragment = HomeFragment()
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.frameLayout, homeFragment)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
-        //now we will need to create our different fragemnts
-        //Now let's add the menu evenet listener
+        //now we will need to create our different fragments
+        //Now let's add the menu event listener
         bottomnav.setOnNavigationItemSelectedListener { item ->
             //we will select each menu item and add an event when it's selected
             when (item.itemId) {
