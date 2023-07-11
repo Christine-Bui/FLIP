@@ -1,16 +1,18 @@
 package com.flip.flashcards
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentTransaction
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import android.widget.EditText
+import android.widget.Toast
+
 
 class MainActivity : AppCompatActivity() {
     //Create our four fragments object
@@ -61,8 +63,25 @@ class MainActivity : AppCompatActivity() {
                     dialog = BottomSheetDialog(this, R.style.BottomSheetDialogTheme)
                     val dialogView = layoutInflater.inflate(R.layout.bottom_dia, findViewById<LinearLayout>(R.id.create))
                     dialogView.findViewById<View>(R.id.buttonFolder).setOnClickListener {
-                        Toast.makeText(this, "Folder", Toast.LENGTH_SHORT).show()
-                    }
+                            val builder = AlertDialog.Builder(this)
+                            builder.setTitle("New Folder Name")
+
+                            // set the custom layout
+                            val customLayout: View = layoutInflater.inflate(R.layout.folder_naming, null)
+                            builder.setView(customLayout)
+
+                            // add a button
+                            builder.setPositiveButton("OK") { dialog: DialogInterface?, which: Int ->
+                                // send data from the AlertDialog to the Activity
+                                val editText = customLayout.findViewById<EditText>(R.id.editText)
+                                val message = editText.text.toString()
+                                val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+                                toast.show()
+                            }
+                            // create and show the alert dialog
+                            val dialog = builder.create()
+                            dialog.show()
+                        }
 
                     dialogView.findViewById<View>(R.id.buttonSet).setOnClickListener {
                         newFragment = NewFragment()
