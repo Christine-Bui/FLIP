@@ -23,21 +23,25 @@ class MainActivity : AppCompatActivity() {
     lateinit var profileFragment: ProfileFragment
     private lateinit var dialog: BottomSheetDialog
 
+    //Holds cards, but will be held into CardSetsModels later.
+    val cardModels = ArrayList<CardModel>()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //now let's create our framelayout and bottomnav variables
         var bottomnav = findViewById<BottomNavigationView>(R.id.BottomNavMenu)
         var frame = findViewById<FrameLayout>(R.id.frameLayout)
-        //Now let's the deffault Fragment
+        //Now let's the default Fragment
         homeFragment = HomeFragment()
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.frameLayout, homeFragment)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
-        //now we will need to create our different fragemnts
-        //Now let's add the menu evenet listener
+        //now we will need to create our different fragments
+        //Now let's add the menu event listener
         bottomnav.setOnNavigationItemSelectedListener { item ->
             //we will select each menu item and add an event when it's selected
             when (item.itemId) {
@@ -75,12 +79,16 @@ class MainActivity : AppCompatActivity() {
                                 // send data from the AlertDialog to the Activity
                                 val editText = customLayout.findViewById<EditText>(R.id.editText)
                                 val message = editText.text.toString()
-                                val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+                                val toast = Toast.makeText(this, "Folder Made: $message", Toast.LENGTH_SHORT)
                                 toast.show()
+
                             }
+                        //removes modal bottom sheet after user selects 'Create new folder' option.
+                            dialog.dismiss()
                             // create and show the alert dialog
                             val dialog = builder.create()
                             dialog.show()
+
                         }
 
                     dialogView.findViewById<View>(R.id.buttonSet).setOnClickListener {
@@ -90,9 +98,13 @@ class MainActivity : AppCompatActivity() {
                             .replace(R.id.frameLayout, newFragment)
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                             .commit()
+                        //removes modal bottom sheet after user selects a new card set
+                        dialog.dismiss()
+
                     }
                     dialog.setContentView(dialogView)
                     dialog.show()
+
                 }
 
                 R.id.favorite -> {

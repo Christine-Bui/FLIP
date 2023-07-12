@@ -18,8 +18,8 @@
     <string name="create">Create</string>
     <string name="create_a_folder">Create a Folder</string>
     <string name="create_a_new_set">Create a New Set</string>
-    <string name="Confirm" />
-    <string name="Cancel" />
-    <string name="name_folder">Enter a Name</string>
-    <string name="new_folder">New Folder</string>
+
+    <string name="new_set">New Set</string>
+    <string name="front_card_text">Front Card Text</string>
+    <string name="back_card_text">Back Card Text</string>
 </resources>
