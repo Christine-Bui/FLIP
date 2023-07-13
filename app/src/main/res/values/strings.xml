@@ -22,4 +22,9 @@
     <string name="new_set">New Set</string>
     <string name="front_card_text">Front Card Text</string>
     <string name="back_card_text">Back Card Text</string>
+    <string name="search">Search</string>
+    <string name="hello_events_fragment">hello events fragment</string>
+    <string name="refresh">refresh</string>
+    <string name="more">more</string>
+    <string name="flip">Flip</string>
 </resources>
