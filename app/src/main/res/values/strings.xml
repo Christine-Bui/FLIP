@@ -23,9 +23,9 @@
     <string name="front_card_text">Front Card Text</string>
     <string name="back_card_text">Back Card Text</string>
     <string name="search">Search</string>
-    <string name="hello_events_fragment">hello events fragment</string>
+    <string name="hello_events_fragment">Hello events fragment</string>
     <string name="refresh">refresh</string>
-    <string name="more">more</string>
+    <string name="more">Settings</string>
     <string name="flip">Flip</string>
     <string name="enter_name_of_new_set">Enter Name of New Set</string>
     <string name="add">Add</string>
