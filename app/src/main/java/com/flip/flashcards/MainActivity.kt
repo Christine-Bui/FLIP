@@ -19,7 +19,7 @@ import android.widget.Toast
 class MainActivity : AppCompatActivity() {
     //Create our four fragments object
     lateinit var homeFragment: HomeFragment
-    lateinit var searchFragment: EventsFragment
+    lateinit var eventsFragment: EventsFragment
     lateinit var newFragment: NewFragment
     lateinit var favFragment: FavFragment
     lateinit var profileFragment: ProfileFragment
@@ -65,9 +65,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.events -> {
                     // Handle search menu item selection
-                    searchFragment = EventsFragment()
+                    eventsFragment = EventsFragment()
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.frameLayout, searchFragment)
+                        .replace(R.id.frameLayout, eventsFragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
                 }
