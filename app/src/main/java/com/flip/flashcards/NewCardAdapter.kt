@@ -1,5 +1,6 @@
 package com.flip.flashcards
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -9,11 +10,14 @@ import com.google.android.material.textfield.TextInputEditText
 
 //import kotlin.android.synthetic.main.
 
-class NewCardAdapter: RecyclerView.Adapter<NewCardAdapter.CardViewHolder>(){
+class NewCardAdapter(private val exampleList: List<CardModel>): RecyclerView.Adapter<NewCardAdapter.CardViewHolder>(){
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
-        TODO("Not yet implemented")
+        val cardView = LayoutInflater.from(parent.context).inflate(R.layout.new_card_input, parent, false)
+
+
+        return CardViewHolder(cardView)
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
