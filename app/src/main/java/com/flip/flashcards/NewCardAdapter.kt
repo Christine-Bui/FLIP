@@ -21,12 +21,11 @@ class NewCardAdapter(private val exampleList: List<CardModel>): RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val currentItem = exampleList[position]
+        //
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount() = exampleList.size
 
     class CardViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val textView1: TextView = itemView.findViewById(R.id.front_card_text)
