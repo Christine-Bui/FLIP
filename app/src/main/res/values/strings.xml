@@ -29,4 +29,6 @@
     <string name="flip">Flip</string>
     <string name="enter_name_of_new_set">Enter Name of New Set</string>
     <string name="add">Add Card</string>
+    <string name="insert_new_card">Insert New Card</string>
+    <string name="remove_last_card">Remove Last Card</string>
 </resources>
