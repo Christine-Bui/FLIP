@@ -57,7 +57,9 @@
         android:text="@string/insert_new_card"
         android:layout_marginHorizontal="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="insertCard"
+        />
 
     <Button
         android:id="@+id/remove_last_card"
@@ -69,6 +71,8 @@
         android:layout_marginHorizontal="100dp"
         android:text="@string/remove_last_card"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="removeCard"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
