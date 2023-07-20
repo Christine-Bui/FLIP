@@ -31,4 +31,9 @@
     <string name="add">Add Card</string>
     <string name="insert_new_card">Insert New Card</string>
     <string name="remove_last_card">Remove Last Card</string>
+    <string name="christine_bui">Christine Bui</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="help">Help</string>
+    <string name="settings">Settings</string>
 </resources>
