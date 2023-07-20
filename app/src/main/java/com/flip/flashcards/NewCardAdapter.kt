@@ -19,7 +19,8 @@ class NewCardAdapter: RecyclerView.Adapter<NewCardAdapter.ExampleViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
 
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.new_card_input, parent)
-        return ExampleViewHolder()
+        TODO()
+    //return ExampleViewHolder()
     }
 
 
