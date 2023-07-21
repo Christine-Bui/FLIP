@@ -39,4 +39,6 @@
     <string name="done">Done</string>
     <string name="enter_name">Enter Name</string>
     <string name="new_card_set_name">New Card Set Name:</string>
+    <string name="card_set_name">Card Name</string>
+    <string name="image_description">Card Set Image</string>
 </resources>

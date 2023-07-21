@@ -2,4 +2,6 @@
 <resources>
     <string name="done">Done</string>
     <string name="enter_name">Enter Name</string>
+    <string name="card_set_name">Card Name</string>
+    <string name="image_description">Card Set Image</string>
 </resources>
