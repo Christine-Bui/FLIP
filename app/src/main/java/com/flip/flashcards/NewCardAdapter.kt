@@ -11,21 +11,24 @@ import com.google.android.material.textfield.TextInputEditText
 
 //import kotlin.android.synthetic.main.
 
-class NewCardAdapter: RecyclerView.Adapter<NewCardAdapter.ExampleViewHolder>(){
+class NewCardAdapter(private val cardList: List<CardModel>): RecyclerView.Adapter<NewCardAdapter.ExampleViewHolder>(){
 
 
 
 //Called by RecyclerView when its time to create a new viewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
 
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.new_card_input, parent)
-        TODO()
-    //return ExampleViewHolder()
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.new_card_input, parent, false)
+
+        return ExampleViewHolder(itemView as TextInputEditText)
     }
 
 
     override fun onBindViewHolder(holder: ExampleViewHolder, position: Int) {
         TODO("Not yet implemented")
+        val currentCard = cardList[position]
+
+
     }
     override fun getItemCount(): Int {
         TODO("Not yet implemented")
