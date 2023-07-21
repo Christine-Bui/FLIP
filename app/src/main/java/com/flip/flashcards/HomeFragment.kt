@@ -8,19 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.content.DialogInterface
 import android.widget.Button
+import android.widget.EditText
 
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import androidx.appcompat.app.AlertDialog
+import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.flip.flashcards.databinding.FragmentHomeBinding
-
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -31,7 +27,6 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
-
 
 
     override fun onCreateView(
@@ -54,11 +49,38 @@ class HomeFragment : Fragment() {
 
 
             showDialog()
-            }
         }
+    }
+
     private fun showDialog() {
         val dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.new_set_name)
-        dialog.show()
+
+        val editTextCardSetName = dialog.findViewById<EditText>(R.id.editTextCardSetName)
+
+        dialog.findViewById<Button>(R.id.buttonDone)?.setOnClickListener {
+            val cardSetName = editTextCardSetName.text.toString().trim()
+            if (cardSetName.isNotEmpty()) {
+                // Create a new CardSet object and set the cardSetName
+                val cardSet = CardSet(cardSetName)
+
+                // Do something with the cardSet object, for example, add it to a list
+                // or save it to a database, etc.
+                // For demonstration, we'll just show a Toast message
+                //Toast.makeText(requireContext(), "Card set name saved: $cardSetName", Toast.LENGTH_SHORT).show()
+
+                dialog.dismiss() // Dismiss the dialog after saving the data
+            } else {
+                Toast.makeText(requireContext(), "Please enter a card set name", Toast.LENGTH_SHORT).show()
+            }
+            }
+
+
+
+
+
+
+            dialog.show()
+        }
     }
-}
+

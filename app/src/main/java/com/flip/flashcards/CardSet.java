@@ -14,6 +14,10 @@ public class CardSet {
         this.cardSetName = cardSetName;
     }
 
+    public CardSet(String cardSetName) {
+
+        this.cardSetName = cardSetName;
+    }
     public ArrayList<Card> getCards() {
         return cards;
     }
@@ -28,5 +32,9 @@ public class CardSet {
 
     public void setCardSetName(String cardSetName) {
         this.cardSetName = cardSetName;
+    }
+
+    public void addCard(Card card){
+        cards.add(new Card(card.getFrontText(), card.getBackText()));
     }
 }
