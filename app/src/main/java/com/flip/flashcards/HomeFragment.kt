@@ -1,27 +1,21 @@
 package com.flip.flashcards
-
 import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.content.DialogInterface
 import android.widget.Button
 import android.widget.EditText
-
-import android.widget.FrameLayout
-import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.flip.flashcards.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-
-    // TODO: Rename and change types of parameters
+    private val cardSetList = ArrayList<CardSet>()
+    private lateinit var recyclerView: RecyclerView // Declare recyclerView at the class level
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,19 +29,18 @@ class HomeFragment : Fragment() {
     ): View {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val rootView = inflater.inflate(R.layout.fragment_home, container, false)
-        val recyclerView = rootView.findViewById<RecyclerView>(R.id.card_sets)
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //when button is clicked, new_set_name fragment is shown.
+        recyclerView = binding.cardSetsRecyclerView
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        val adapter = CardSetAdapter(cardSetList)
+        //when button is clicked, new_set_name fragment is shown.
         binding.newSet.setOnClickListener {
             // Your button click logic here
-
-
             showDialog()
         }
     }
@@ -63,23 +56,20 @@ class HomeFragment : Fragment() {
             if (cardSetName.isNotEmpty()) {
                 // Create a new CardSet object and set the cardSetName
                 val cardSet = CardSet(cardSetName)
-
+                cardSetList.add(cardSet)
+                // Notify the RecyclerView adapter that data has changed
+                recyclerView?.adapter?.notifyDataSetChanged()
                 // Do something with the cardSet object, for example, add it to a list
                 // or save it to a database, etc.
                 // For demonstration, we'll just show a Toast message
-                //Toast.makeText(requireContext(), "Card set name saved: $cardSetName", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Card set name saved: $cardSetName", Toast.LENGTH_SHORT).show()
 
                 dialog.dismiss() // Dismiss the dialog after saving the data
+
             } else {
                 Toast.makeText(requireContext(), "Please enter a card set name", Toast.LENGTH_SHORT).show()
             }
             }
-
-
-
-
-
-
             dialog.show()
         }
     }
