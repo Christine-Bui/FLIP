@@ -14,6 +14,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.RecyclerView
 import com.flip.flashcards.databinding.FragmentHomeBinding
 
 
@@ -37,7 +38,11 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_home, container, false)
+        val recyclerView = rootView.findViewById<RecyclerView>(R.id.card_sets)
+
         return binding.root
     }
 
