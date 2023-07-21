@@ -23,14 +23,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/card_sets"
-        android:layout_width="376dp"
-        android:layout_height="400dp"
+        android:layout_width="368dp"
+        android:layout_height="721dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="103dp"
         android:contextClickable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/card_set"/>
+        tools:listitem="@layout/card_set" />
 
     <Button
         android:id="@+id/newSet"
