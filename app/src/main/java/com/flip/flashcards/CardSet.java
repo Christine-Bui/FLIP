@@ -3,22 +3,22 @@ package com.flip.flashcards;
 
 import java.util.ArrayList;
 
-public class CardSetModel {
+public class CardSet {
 
-    ArrayList<CardModel> cards;
+    ArrayList<Card> cards;
     String cardSetName;
 
 
-    public CardSetModel(ArrayList<CardModel> cards, String cardSetName) {
+    public CardSet(ArrayList<Card> cards, String cardSetName) {
         this.cards = cards;
         this.cardSetName = cardSetName;
     }
 
-    public ArrayList<CardModel> getCards() {
+    public ArrayList<Card> getCards() {
         return cards;
     }
 
-    public void setCards(ArrayList<CardModel> cards) {
+    public void setCards(ArrayList<Card> cards) {
         this.cards = cards;
     }
 

@@ -1,11 +1,11 @@
 package com.flip.flashcards;
 
-public class CardModel {
+public class Card {
     String frontText;
     String backText;
 
 
-    public CardModel(String frontText, String backText) {
+    public Card(String frontText, String backText) {
         this.frontText = frontText;
         this.backText = backText;
     }

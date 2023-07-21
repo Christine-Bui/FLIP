@@ -11,7 +11,7 @@ import com.google.android.material.textfield.TextInputEditText
 
 //import kotlin.android.synthetic.main.
 
-class NewCardAdapter(private val cardList: List<CardModel>): RecyclerView.Adapter<NewCardAdapter.ExampleViewHolder>(){
+class NewCardAdapter(private val cardList: List<Card>): RecyclerView.Adapter<NewCardAdapter.ExampleViewHolder>(){
 
 
 
@@ -26,7 +26,7 @@ class NewCardAdapter(private val cardList: List<CardModel>): RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: ExampleViewHolder, position: Int) {
         TODO("Not yet implemented")
-        val currentCard = cardList[position]
+        //val currentCard = cardList[position]
 
 
     }

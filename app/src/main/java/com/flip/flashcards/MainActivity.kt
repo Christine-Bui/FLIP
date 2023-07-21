@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var dialog: BottomSheetDialog
 
     //Holds cards, but will be held into CardSetsModels later.
-    val cardModels = ArrayList<CardModel>()
+    val cardModels = ArrayList<Card>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
