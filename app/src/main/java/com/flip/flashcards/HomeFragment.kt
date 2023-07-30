@@ -41,10 +41,20 @@ class HomeFragment : Fragment() {
         //when button is clicked, new_set_name fragment is shown.
         binding.newSet.setOnClickListener {
             // Your button click logic here
-            showDialog()
+            //showDialog2()
+            //Toast.makeText(requireContext(), "New Set Made", Toast.LENGTH_SHORT).show()
+
+            cardSetList.add(CardSet("New Empty Card Set"))
+            recyclerView.adapter?.notifyDataSetChanged()
+            Toast.makeText(requireContext(),cardSetList[0].getCardSetName(), Toast.LENGTH_SHORT).show()
         }
     }
 
+
+    private fun showDialog2(){
+        val dialog = Dialog(requireContext())
+
+    }
     private fun showDialog() {
         val dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.new_set_name)
@@ -62,7 +72,7 @@ class HomeFragment : Fragment() {
                 // Do something with the cardSet object, for example, add it to a list
                 // or save it to a database, etc.
                 // For demonstration, we'll just show a Toast message
-                Toast.makeText(requireContext(), "Card set name saved: $cardSetName", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(requireContext(), "Card set name saved: $cardSetName", Toast.LENGTH_SHORT).show()
 
                 dialog.dismiss() // Dismiss the dialog after saving the data
 
