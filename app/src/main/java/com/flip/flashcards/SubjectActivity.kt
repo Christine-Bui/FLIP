@@ -16,12 +16,10 @@ import android.widget.EditText
 import android.widget.Toast
 
 
-class MainActivity : AppCompatActivity() {
+class SubjectActivity : AppCompatActivity() {
     //Create our four fragments object
     lateinit var homeFragment: HomeFragment
-    lateinit var eventsFragment: EventsFragment
     lateinit var newFragment: NewFragment
-    lateinit var favFragment: FavFragment
     lateinit var profileFragment: ProfileFragment
     private lateinit var dialog: BottomSheetDialog
 
@@ -31,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_subject)
         //now let's create our framelayout and bottomnav variables
         val bottomnav = findViewById<BottomNavigationView>(R.id.BottomNavMenu)
         var frame = findViewById<FrameLayout>(R.id.frameLayout)
@@ -60,14 +58,6 @@ class MainActivity : AppCompatActivity() {
                     homeFragment = HomeFragment()
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.frameLayout, homeFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
-                }
-                R.id.events -> {
-                    // Handle search menu item selection
-                    eventsFragment = EventsFragment()
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.frameLayout, eventsFragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
                 }
@@ -117,14 +107,6 @@ class MainActivity : AppCompatActivity() {
                     }
                     dialog.setContentView(dialogView)
                     dialog.show()
-                }
-                R.id.favorite -> {
-                    // Handle favorite menu item selection
-                    favFragment = FavFragment()
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.frameLayout, favFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
                 }
                 R.id.profile -> {
                     // Handle profile menu item selection

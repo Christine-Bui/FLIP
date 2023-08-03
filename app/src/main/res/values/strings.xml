@@ -41,4 +41,34 @@
     <string name="new_card_set_name">New Card Set Name:</string>
     <string name="card_set_name">Card Name</string>
     <string name="image_description">Card Set Image</string>
+
+
+    <string name="question_label">Q</string>
+    <string name="question_hint">Question</string>
+    <string name="answer_label">A</string>
+    <string name="answer_hint">Answer</string>
+    <string name="show_answer">Flip to Back</string>
+    <string name="hide_answer">Flip to Front</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="update">Update</string>
+    <string name="save_question">Save Question</string>
+    <string name="add_subject">Add Subject</string>
+    <string name="question_deleted">Question deleted.</string>
+    <string name="question_added">Question added.</string>
+    <string name="question_updated">Question updated.</string>
+    <string name="subject">New Subject Name?</string>
+    <string name="cancel">Cancel</string>
+    <string name="edit_question">Edit Question</string>
+    <string name="add_question">Add Question</string>
+    <string name="no_questions">No Flashcards exist.</string>
+    <string name="subject_exists">The subject "%1$s" already exists.</string>
+    <string name="question_number">%1$s (%2$d of %3$d)</string>
+    <string name="import_questions">Import</string>
+    <string name="select_subject">Select a subject:</string>
+    <string name="undo">Undo</string>
+    <string name="back_of_the_card">Back of the Card</string>
+    <string name="front_of_the_card">Front of the Card</string>
 </resources>
