@@ -11,23 +11,23 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import androidx.fragment.app.FragmentTransaction
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.flip.flashcards.model.Subject
 import com.flip.flashcards.viewmodel.SubjectListViewModel
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
 class SubjectActivity : AppCompatActivity(),
     SubjectDialogFragment.OnSubjectEnteredListener {
     private var loadSubjectList = true
-    private var subjectAdapter = SubjectAdapter(mutableListOf())
+    private lateinit var subjectAdapter: SubjectAdapter
     private lateinit var subjectRecyclerView: RecyclerView
     private lateinit var subjectColors: IntArray
     private val subjectListViewModel: SubjectListViewModel by lazy {
@@ -37,27 +37,35 @@ class SubjectActivity : AppCompatActivity(),
     private var selectedSubjectPosition = RecyclerView.NO_POSITION
     private var actionMode: ActionMode? = null
 
-    //Create our four fragments object
+    // Create our four fragments object
     lateinit var homeFragment: HomeFragment
     lateinit var profileFragment: ProfileFragment
-    private lateinit var dialog: BottomSheetDialog
-
-    //Holds cards, but will be held into CardSetsModels later.
-//    val cardModels = ArrayList<Card>()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_subject)
-        //now let's create our framelayout and bottomnav variables
+
+        // Now let's create our framelayout and bottomnav variables
         val bottomnav = findViewById<BottomNavigationView>(R.id.BottomNavMenu)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+//
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(false)
+            setDisplayShowHomeEnabled(true) // This will enable the app logo to be displayed
+        }
+//         Add a search icon to the far right of the Toolbar
+//        toolbar.inflateMenu(R.menu.menu_search)
+
         subjectColors = resources.getIntArray(R.array.subjectColors)
         subjectRecyclerView = findViewById(R.id.subject_recycler_view)
         subjectRecyclerView.layoutManager = GridLayoutManager(applicationContext, 2)
+
+        subjectAdapter = SubjectAdapter((subjectListViewModel.subjectListLiveData.value ?: mutableListOf()) as MutableList<Subject>)
+        subjectRecyclerView.adapter = subjectAdapter
+
         // Show the subjects
-        subjectListViewModel.subjectListLiveData.observe(
-            this
-        ) { subjectList ->
+        subjectListViewModel.subjectListLiveData.observe(this) { subjectList ->
             if (loadSubjectList) {
                 updateUI(subjectList)
             }
@@ -69,18 +77,8 @@ class SubjectActivity : AppCompatActivity(),
             }
         }
 
-
-
-//        supportActionBar?.apply {
-//            title = "GfG | Action Bar"
-//            subtitle = "Design a custom Action Bar"
-//            setIcon(R.drawable.app_logo)
-//            setDisplayUseLogoEnabled(true)
-//            setDisplayShowHomeEnabled(true)
-//        }
-
-        //now we will need to create our different fragments
-        //Now let's add the menu event
+        // Now we will need to create our different fragments
+        // Now let's add the menu event
         bottomnav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
@@ -102,12 +100,32 @@ class SubjectActivity : AppCompatActivity(),
             }
             true
         }
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_search, menu)
+
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as androidx.appcompat.widget.SearchView
+        searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // Filter the data based on the user's input
+                subjectAdapter.filterData(newText.orEmpty())
+                return true
+            }
+        })
+
+        return true
     }
 
     private fun showRecyclerView() {
         subjectRecyclerView.visibility = View.VISIBLE
         subjectRecyclerView.layoutManager = GridLayoutManager(this, 2)
+        subjectAdapter = SubjectAdapter((subjectListViewModel.subjectListLiveData.value ?: mutableListOf()) as MutableList<Subject>)
         subjectRecyclerView.adapter = subjectAdapter
 
         // Hide the FrameLayout holding fragments
@@ -140,10 +158,14 @@ class SubjectActivity : AppCompatActivity(),
             profileFragment = ProfileFragment()
         }
 
-        // Show the ProfileFragment in the FrameLayout
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.frameLayout, profileFragment, "profileFragment")
-            .commit()
+        // Check if the profileFragment is already visible
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.frameLayout)
+        if (currentFragment != profileFragment) {
+            // Show the ProfileFragment in the FrameLayout
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.frameLayout, profileFragment, "profileFragment")
+                .commit()
+        }
 
         subjectRecyclerView.visibility = View.GONE
 
@@ -152,21 +174,16 @@ class SubjectActivity : AppCompatActivity(),
     }
 
     private fun updateUI(subjectList: List<Subject>) {
-        subjectAdapter = SubjectAdapter(subjectList as MutableList<Subject>)
-        subjectRecyclerView.adapter = subjectAdapter
-    }
-
-    override fun onSubjectEntered(subjectText: String) {
-        if (subjectText.isNotEmpty()) {
-            val subject = Subject(0, subjectText)
-            // Stop updateUI() from being called
-            loadSubjectList = false
-
-            subjectListViewModel.addSubject(subject)
-
-            // Add subject to RecyclerView
-            subjectAdapter.addSubject(subject)
-            Toast.makeText(this, "Added $subjectText", Toast.LENGTH_SHORT).show()
+        if (loadSubjectList) {
+            // Set up the adapter with the original unfiltered list
+            subjectAdapter = SubjectAdapter(subjectList as MutableList<Subject>)
+            subjectRecyclerView.adapter = subjectAdapter
+        }
+        // Check if there are subjects available, if yes, hide the HomeFragment and show RecyclerView
+        if (subjectList.isNotEmpty()) {
+            showRecyclerView()
+        } else {
+            showHomeFragment()
         }
     }
 
@@ -270,17 +287,35 @@ class SubjectActivity : AppCompatActivity(),
     private inner class SubjectAdapter(private val subjectList: MutableList<Subject>) :
         RecyclerView.Adapter<SubjectHolder>() {
 
+        private val filteredSubjectList: MutableList<Subject> = subjectList.toMutableList()
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubjectHolder {
             val layoutInflater = LayoutInflater.from(applicationContext)
             return SubjectHolder(layoutInflater, parent)
         }
 
+        fun filterData(query: String) {
+            filteredSubjectList.clear()
+            if (query.isEmpty()) {
+                // If the search query is empty, show all subjects
+                filteredSubjectList.addAll(subjectList)
+            } else {
+                val lowerCaseQuery = query.toLowerCase()
+                for (subject in subjectList) {
+                    if (subject.text.toLowerCase().contains(lowerCaseQuery)) {
+                        filteredSubjectList.add(subject)
+                    }
+                }
+            }
+            notifyDataSetChanged()
+        }
+
         override fun onBindViewHolder(holder: SubjectHolder, position: Int) {
-            holder.bind(subjectList[position], position)
+            holder.bind(filteredSubjectList[position], position)
         }
 
         override fun getItemCount(): Int {
-            return subjectList.size
+            return filteredSubjectList.size
         }
         fun addSubject(subject: Subject) {
 
@@ -305,6 +340,20 @@ class SubjectActivity : AppCompatActivity(),
                 // Notify adapter of subject removal
                 notifyItemRemoved(index)
             }
+        }
+    }
+
+    override fun onSubjectEntered(subjectText: String) {
+        if (subjectText.isNotEmpty()) {
+            val subject = Subject(0, subjectText)
+
+            // Add subject to the ViewModel
+            subjectListViewModel.addSubject(subject)
+
+            // Notify the adapter to update the RecyclerView
+            subjectAdapter.addSubject(subject)
+
+            Toast.makeText(this, "Added $subjectText", Toast.LENGTH_SHORT).show()
         }
     }
 
