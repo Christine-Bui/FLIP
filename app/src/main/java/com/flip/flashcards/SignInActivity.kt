@@ -1,9 +1,8 @@
-package com.flip.flashcards
-
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.flip.flashcards.SubjectActivity
 import com.flip.flashcards.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
 
