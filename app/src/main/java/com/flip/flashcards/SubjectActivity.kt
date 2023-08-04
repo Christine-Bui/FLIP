@@ -302,7 +302,8 @@ class SubjectActivity : AppCompatActivity(),
             } else {
                 val lowerCaseQuery = query.toLowerCase()
                 for (subject in subjectList) {
-                    if (subject.text.toLowerCase().contains(lowerCaseQuery)) {
+                    // Use case-insensitive search that matches the start of the subject text
+                    if (subject.text.toLowerCase().startsWith(lowerCaseQuery)) {
                         filteredSubjectList.add(subject)
                     }
                 }
