@@ -1,6 +1,5 @@
 package com.flip.flashcards
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -11,13 +10,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.LinearLayout
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -42,13 +37,13 @@ class SubjectActivity : AppCompatActivity(),
     private var actionMode: ActionMode? = null
 
     //Create our four fragments object
-    lateinit var homeFragment: HomeFragment
+//    lateinit var homeFragment: HomeFragment
     lateinit var newFragment: NewFragment
     lateinit var profileFragment: ProfileFragment
     private lateinit var dialog: BottomSheetDialog
 
     //Holds cards, but will be held into CardSetsModels later.
-    val cardModels = ArrayList<Card>()
+//    val cardModels = ArrayList<Card>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,19 +56,20 @@ class SubjectActivity : AppCompatActivity(),
         subjectRecyclerView.layoutManager = GridLayoutManager(applicationContext, 2)
         // Show the subjects
         subjectListViewModel.subjectListLiveData.observe(
-            this, { subjectList ->
-                if (loadSubjectList) {
-                    updateUI(subjectList)
-                }
-            })
-
-        supportActionBar?.apply {
-            title = "GfG | Action Bar"
-            subtitle = "Design a custom Action Bar"
-            setIcon(R.drawable.app_logo)
-            setDisplayUseLogoEnabled(true)
-            setDisplayShowHomeEnabled(true)
+            this
+        ) { subjectList ->
+            if (loadSubjectList) {
+                updateUI(subjectList)
+            }
         }
+
+//        supportActionBar?.apply {
+//            title = "GfG | Action Bar"
+//            subtitle = "Design a custom Action Bar"
+//            setIcon(R.drawable.app_logo)
+//            setDisplayUseLogoEnabled(true)
+//            setDisplayShowHomeEnabled(true)
+//        }
 
         //now we will need to create our different fragments
         //Now let's add the menu event
@@ -81,11 +77,11 @@ class SubjectActivity : AppCompatActivity(),
             when (item.itemId) {
                 R.id.home -> {
                     // Handle home menu item selection
-                    homeFragment = HomeFragment()
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.frameLayout, homeFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
+//                    homeFragment = HomeFragment()
+//                    supportFragmentManager.beginTransaction()
+//                        .replace(R.id.frameLayout, homeFragment)
+//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                        .commit()
                 }
                 R.id.new_set -> {
                     // Handle new_set menu item selection

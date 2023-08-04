@@ -76,6 +76,6 @@
         app:layout_constraintTop_toBottomOf="@+id/help"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:drawableLeftCompat="@drawable/ic_action_new_set" />
+        app:drawableLeftCompat="@drawable/ic_action_sign_out" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
