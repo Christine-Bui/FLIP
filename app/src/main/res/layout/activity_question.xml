@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        tools:context="com.zybooks.studyhelper.QuestionActivity">
+        tools:context="com.flip.flashcards.QuestionActivity">
 
         <TextView
             android:id="@+id/no_question_label_text_view"
@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
-        tools:context="com.zybooks.studyhelper.QuestionActivity">
+        tools:context="com.flip.flashcards.QuestionActivity">
 
         <TextView
             android:id="@+id/question_text_view"

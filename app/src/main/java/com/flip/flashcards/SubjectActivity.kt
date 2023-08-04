@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -37,8 +38,7 @@ class SubjectActivity : AppCompatActivity(),
     private var actionMode: ActionMode? = null
 
     //Create our four fragments object
-//    lateinit var homeFragment: HomeFragment
-    lateinit var newFragment: NewFragment
+    lateinit var homeFragment: HomeFragment
     lateinit var profileFragment: ProfileFragment
     private lateinit var dialog: BottomSheetDialog
 
@@ -61,7 +61,15 @@ class SubjectActivity : AppCompatActivity(),
             if (loadSubjectList) {
                 updateUI(subjectList)
             }
+            // Check if there are subjects available, if yes, hide the HomeFragment and show RecyclerView
+            if (subjectList.isNotEmpty()) {
+                showRecyclerView()
+            } else {
+                showHomeFragment()
+            }
         }
+
+
 
 //        supportActionBar?.apply {
 //            title = "GfG | Action Bar"
@@ -77,11 +85,11 @@ class SubjectActivity : AppCompatActivity(),
             when (item.itemId) {
                 R.id.home -> {
                     // Handle home menu item selection
-//                    homeFragment = HomeFragment()
-//                    supportFragmentManager.beginTransaction()
-//                        .replace(R.id.frameLayout, homeFragment)
-//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//                        .commit()
+                    if (subjectListViewModel.subjectListLiveData.value.isNullOrEmpty()) {
+                        showHomeFragment()
+                    } else {
+                        showRecyclerView()
+                    }
                 }
                 R.id.new_set -> {
                     // Handle new_set menu item selection
@@ -89,17 +97,58 @@ class SubjectActivity : AppCompatActivity(),
                     dialog.show(supportFragmentManager, "subjectDialog")
                 }
                 R.id.profile -> {
-                    // Handle profile menu item selection
-                    profileFragment = ProfileFragment()
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.frameLayout, profileFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
+                    showProfileFragment()
                 }
             }
             true
         }
 
+    }
+
+    private fun showRecyclerView() {
+        subjectRecyclerView.visibility = View.VISIBLE
+        subjectRecyclerView.layoutManager = GridLayoutManager(this, 2)
+        subjectRecyclerView.adapter = subjectAdapter
+
+        // Hide the FrameLayout holding fragments
+        val frameLayout = findViewById<FrameLayout>(R.id.frameLayout)
+        frameLayout.visibility = View.GONE
+    }
+
+    private fun showHomeFragment() {
+        // Create or retrieve the HomeFragment
+        if (supportFragmentManager.findFragmentByTag("homeFragment") == null) {
+            homeFragment = HomeFragment()
+        }
+
+        // Show the HomeFragment in the FrameLayout
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frameLayout, homeFragment, "homeFragment")
+            .commit()
+
+        // Hide the RecyclerView
+        subjectRecyclerView.visibility = View.GONE
+
+        // Show the FrameLayout holding fragments
+        val frameLayout = findViewById<FrameLayout>(R.id.frameLayout)
+        frameLayout.visibility = View.VISIBLE
+    }
+
+    private fun showProfileFragment() {
+        // Create or retrieve the ProfileFragment
+        if (supportFragmentManager.findFragmentByTag("profileFragment") == null) {
+            profileFragment = ProfileFragment()
+        }
+
+        // Show the ProfileFragment in the FrameLayout
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frameLayout, profileFragment, "profileFragment")
+            .commit()
+
+        subjectRecyclerView.visibility = View.GONE
+
+        val frameLayout = findViewById<FrameLayout>(R.id.frameLayout)
+        frameLayout.visibility = View.VISIBLE
     }
 
     private fun updateUI(subjectList: List<Subject>) {
@@ -119,11 +168,6 @@ class SubjectActivity : AppCompatActivity(),
             subjectAdapter.addSubject(subject)
             Toast.makeText(this, "Added $subjectText", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun addSubjectClick() {
-        val dialog = SubjectDialogFragment()
-        dialog.show(supportFragmentManager, "subjectDialog")
     }
 
     private inner class SubjectHolder(inflater: LayoutInflater, parent: ViewGroup?) :
@@ -264,33 +308,27 @@ class SubjectActivity : AppCompatActivity(),
         }
     }
 
-    // method to inflate the options menu when
-    // the user opens the menu for the first time
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.top_menu, menu)
-        return true
-    }
 
     // methods to control the operations that will
     // happen when user clicks on the action buttons
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.search -> {
-                Toast.makeText(this, "Search Clicked", Toast.LENGTH_SHORT).show()
-                return true
-            }
-
-            R.id.refresh -> {
-                Toast.makeText(this, "Refresh Clicked", Toast.LENGTH_SHORT).show()
-                return true
-            }
-
-            R.id.more -> {
-                Toast.makeText(this, "Copy Clicked", Toast.LENGTH_SHORT).show()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+//            R.id.search -> {
+//                Toast.makeText(this, "Search Clicked", Toast.LENGTH_SHORT).show()
+//                return true
+//            }
+//
+//            R.id.refresh -> {
+//                Toast.makeText(this, "Refresh Clicked", Toast.LENGTH_SHORT).show()
+//                return true
+//            }
+//
+//            R.id.more -> {
+//                Toast.makeText(this, "Copy Clicked", Toast.LENGTH_SHORT).show()
+//                return true
+//            }
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
 
 }

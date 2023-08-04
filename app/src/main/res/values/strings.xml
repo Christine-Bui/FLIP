@@ -71,4 +71,9 @@
     <string name="undo">Undo</string>
     <string name="back_of_the_card">Back of the Card</string>
     <string name="front_of_the_card">Front of the Card</string>
+    <string name="back_of_card">Back of Card</string>
+    <string name="enter_text">Enter Text</string>
+    <string name="front_of_card">Front of Card</string>
+
+    <string name="welcome_message">Welcome to the Notes App!</string>
 </resources>

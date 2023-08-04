@@ -32,11 +32,9 @@
         <activity
             android:name=".QuestionEditActivity"
             android:parentActivityName=".QuestionActivity"
-
             android:exported="false" />
         <activity
             android:name=".QuestionActivity"
-
             android:exported="false"
             android:launchMode="singleTop"
             android:parentActivityName=".SubjectActivity" />
