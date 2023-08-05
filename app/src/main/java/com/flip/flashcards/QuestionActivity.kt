@@ -90,6 +90,8 @@ class QuestionActivity : AppCompatActivity() {
 
         // Add click callbacks
         flipButton.setOnClickListener { toggleAnswerVisibility() }
+        backCardTextView.setOnClickListener{toggleAnswerVisibility()}
+        frontCardTextView.setOnClickListener{toggleAnswerVisibility()}
         findViewById<Button>(R.id.add_question_button).setOnClickListener { addQuestion() }
 
         // SubjectActivity should provide the subject ID and text
