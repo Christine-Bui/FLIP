@@ -55,7 +55,7 @@ class QuestionActivity : AppCompatActivity() {
             // Display the added question, which will appear at end of list
             currentQuestionIndex = questionList.size
 
-            Toast.makeText(this, R.string.question_added, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Card added", Toast.LENGTH_SHORT).show()
         }
     }
     private lateinit var deletedQuestion: Question
