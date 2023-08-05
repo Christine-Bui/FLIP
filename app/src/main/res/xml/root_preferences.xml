@@ -12,9 +12,5 @@
         app:title="@string/pref_title_subject_order"
         app:useSimpleSummaryProvider="true" />
 
-    <EditTextPreference
-        app:key="default_question"
-        app:title="@string/pref_title_default_question"
-        app:useSimpleSummaryProvider="true" />
 
 </PreferenceScreen>
