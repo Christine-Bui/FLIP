@@ -22,8 +22,13 @@ import com.flip.flashcards.model.Subject
 import com.flip.flashcards.viewmodel.SubjectListViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import androidx.preference.PreferenceManager
 
 
+
+enum class SubjectSortOrder {
+    ALPHABETIC, NEW_FIRST, OLD_FIRST
+}
 class SubjectActivity : AppCompatActivity(),
     SubjectDialogFragment.OnSubjectEnteredListener {
     private var loadSubjectList = true
@@ -191,6 +196,8 @@ class SubjectActivity : AppCompatActivity(),
         if (loadSubjectList) {
             // Set up the adapter with the original unfiltered list
             subjectAdapter = SubjectAdapter(subjectList as MutableList<Subject>)
+            subjectAdapter.sortOrder = getSettingsSortOrder()
+
             subjectRecyclerView.adapter = subjectAdapter
         }
         // Check if there are subjects available, if yes, hide the HomeFragment and show RecyclerView
@@ -300,6 +307,15 @@ class SubjectActivity : AppCompatActivity(),
 
     private inner class SubjectAdapter(private val subjectList: MutableList<Subject>) :
         RecyclerView.Adapter<SubjectHolder>() {
+        var sortOrder: SubjectSortOrder = SubjectSortOrder.ALPHABETIC
+            set(value) {
+                when (value) {
+                    SubjectSortOrder.OLD_FIRST -> subjectList.sortBy { it.updateTime }
+                    SubjectSortOrder.NEW_FIRST -> subjectList.sortByDescending { it.updateTime }
+                    else -> subjectList.sortWith(compareBy(String.CASE_INSENSITIVE_ORDER, { it.text }))
+                }
+                field = value
+            }
 
         private val filteredSubjectList: MutableList<Subject> = subjectList.toMutableList()
 
@@ -372,6 +388,18 @@ class SubjectActivity : AppCompatActivity(),
         }
     }
 
+
+    private fun getSettingsSortOrder(): SubjectSortOrder {
+
+        // Set sort order from settings
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val sortOrderPref = sharedPrefs.getString("subject_order", "alpha")
+        return when (sortOrderPref) {
+            "alpha" -> SubjectSortOrder.ALPHABETIC
+            "new_first" -> SubjectSortOrder.NEW_FIRST
+            else -> SubjectSortOrder.OLD_FIRST
+        }
+    }
 
     // methods to control the operations that will
     // happen when user clicks on the action buttons
