@@ -103,6 +103,8 @@ class SubjectActivity : AppCompatActivity(),
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
+
         menuInflater.inflate(R.menu.menu_search, menu)
 
         val searchItem = menu.findItem(R.id.action_search)
@@ -120,6 +122,18 @@ class SubjectActivity : AppCompatActivity(),
         })
 
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.settings -> {
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+
     }
 
     private fun showRecyclerView() {
