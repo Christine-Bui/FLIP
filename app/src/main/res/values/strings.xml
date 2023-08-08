@@ -115,4 +115,7 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="sort_alphabetic">Sort by Name</string>
+    <string name="sort_new_first">Sort by Newest</string>
+    <string name="sort_old_first">Sort by Oldest</string>
 </resources>
