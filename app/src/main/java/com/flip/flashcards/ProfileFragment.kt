@@ -21,6 +21,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import android.widget.ViewFlipper
@@ -36,10 +37,14 @@ class ProfileFragment : Fragment() {
 
 
     private lateinit var settingsButton: Button
+    //private lateinit var aboutButton: Button
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
 
 
         //settingsButton = find
@@ -52,6 +57,23 @@ class ProfileFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false)
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val buttonOpenWebsite = view.findViewById<Button>(R.id.about)
+        buttonOpenWebsite.setOnClickListener {
+            val websiteUrl = "https://github.com/Christine-Bui/FLIP"
+            openWebsite(websiteUrl)
+        }
+    }
+
+
+    private fun openWebsite(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
     }
 }
 
