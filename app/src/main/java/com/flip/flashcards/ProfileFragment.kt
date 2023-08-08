@@ -68,6 +68,12 @@ class ProfileFragment : Fragment() {
             val websiteUrl = "https://github.com/Christine-Bui/FLIP"
             openWebsite(websiteUrl)
         }
+
+        val buttonSettings = view.findViewById<Button>(R.id.settings)
+        buttonSettings.setOnClickListener {
+            val intent = Intent(requireContext(), SettingsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 

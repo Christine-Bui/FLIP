@@ -52,9 +52,11 @@ class SubjectActivity : AppCompatActivity(),
 
         // Now let's create our framelayout and bottomnav variables
         val bottomnav = findViewById<BottomNavigationView>(R.id.BottomNavMenu)
+
+        //Set toolbar and add it to show up at the top
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-//
+
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(false)
             setDisplayShowHomeEnabled(true) // This will enable the app logo to be displayed
