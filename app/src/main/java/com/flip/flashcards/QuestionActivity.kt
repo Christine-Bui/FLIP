@@ -114,33 +114,7 @@ class QuestionActivity : AppCompatActivity() {
     private fun toggleAnswerVisibility() {
 
 
-        /*
-                val viewToFlip = if (isShowingFront) frontCardTextView else backCardTextView
-                val viewToHide = if (isShowingFront) backCardTextView else frontCardTextView
-                viewToFlip.apply {
-                    visibility = View.VISIBLE
-                    alpha = 0f
-                    scaleX = 1f
-                    animate()
-                        .alpha(1f)
-                        .scaleX(1f)
-                        .setDuration(500)
-                        .withEndAction {
-                            viewToHide.visibility = View.INVISIBLE
-                        }
-                }
-                isShowingFront = !isShowingFront
 
-        */
-        /*if (backCardTextView.visibility == View.VISIBLE) {
-                flipButton.setText(R.string.show_answer)
-                backCardTextView.visibility = View.INVISIBLE
-                //answerLabelTextView.visibility = View.INVISIBLE
-            } else {
-                flipButton.setText(R.string.hide_answer)
-
-                //answerLabelTextView.visibility = View.VISIBLE
-            }*/
         if (isShowingFront)
         {
 

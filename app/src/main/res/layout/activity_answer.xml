@@ -44,27 +44,46 @@
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="10dp">
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:layout_constraintTop_toTopOf="parent" />
         <ViewFlipper
             android:id="@+id/flipper"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="100dp"
             app:layout_constraintTop_toTopOf="parent" >
 
 
             <!-- Card front -->
+
+            <!-- Card back (hidden initially) -->
             <TextView
                 android:id="@+id/front_card_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
+                android:background="@drawable/flashcard_background"
                 android:padding="16dp"
                 android:text="@string/front_of_the_card"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:background="@drawable/flashcard_background"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Card back (hidden initially) -->
             <TextView
                 android:id="@+id/back_card_text_view"
                 android:layout_width="match_parent"
@@ -85,8 +104,8 @@
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="350dp"
-            android:layout_marginTop="300dp"
+            android:layout_marginVertical="450dp"
+            android:layout_marginTop="424dp"
 
             android:text="@string/flip"
             app:layout_constraintEnd_toEndOf="parent"

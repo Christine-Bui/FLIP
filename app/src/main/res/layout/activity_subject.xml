@@ -32,16 +32,18 @@
             android:layout_height="0dp"
             android:scrollbars="vertical"
             app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintBottom_toTopOf="@id/BottomNavMenu"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/BottomNavMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/bottom_menu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+            android:layout_gravity="bottom"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/BottomNavMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:menu="@menu/bottom_menu"
-        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
-        android:layout_gravity="bottom"/>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
