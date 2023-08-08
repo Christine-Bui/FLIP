@@ -22,6 +22,7 @@ import android.view.animation.AnimationUtils
 import android.widget.Toast
 import android.widget.ViewFlipper
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.Toolbar
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -86,6 +87,9 @@ class QuestionActivity : AppCompatActivity() {
         flipButton = findViewById(R.id.flip_button)
         showQuestionLayout = findViewById(R.id.show_question_layout)
         noCardLayout = findViewById(R.id.no_question_layout)
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
 
         // Add click callbacks
