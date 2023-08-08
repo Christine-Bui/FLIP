@@ -81,7 +81,7 @@
 
 
     <string name="settings">Settings</string>
-    <string name="pref_title_theme">Dark theme</string>
+    <string name="pref_title_theme">Dark Mode</string>
     <string name="pref_description_theme">Turn on dark theme</string>
     <string name="pref_title_default_question">Default question</string>
     <string name="pref_title_subject_order">Subject order</string>

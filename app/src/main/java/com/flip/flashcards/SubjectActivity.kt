@@ -314,9 +314,12 @@ class SubjectActivity : AppCompatActivity(),
                 when (value) {
                     SubjectSortOrder.OLD_FIRST -> subjectList.sortBy { it.updateTime }
                     SubjectSortOrder.NEW_FIRST -> subjectList.sortByDescending { it.updateTime }
+
                     else -> subjectList.sortWith(compareBy(String.CASE_INSENSITIVE_ORDER, { it.text }))
+
                 }
                 field = value
+
             }
 
         private val filteredSubjectList: MutableList<Subject> = subjectList.toMutableList()
